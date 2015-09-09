@@ -74,8 +74,8 @@ class BankOperationLinker
         if not operationToLink?
             log.info "not operationToLink?"
             callback()
-        else if operationToLink.appDetails is undefined
-            log.info "operationToLink.appDetails is undefined"
+        else if operationToLink.attachments is undefined
+            log.info "operationToLink.attachments is undefined"
             @linkOperation operationToLink, entry, callback
         else
             log.info "else"
@@ -102,16 +102,16 @@ class BankOperationLinker
             else
                 entry = entries[0]
                 log.info entry
-                appDetails =
+                attachments =
                     url : "/#apps/edf/factures/?payment=#{entry.number}"
                     linkTranslationKey: "operations.edf_details"
                     linkPlainEnglish: "Go to EDF app"
-                operation.setAppDetails appDetails, (err) =>
+                operation.setAttachments attachments, (err) =>
                     if err
                         @log.raw err
                     else
                         @log.debug """
-Url #{operation.appDetails} linked with operation:
+Url #{operation.attachments} linked with operation:
 #{operation.title} - #{operation.amount}
 """
                     callback()

@@ -41,10 +41,10 @@ BankOperation::setBinaryFromFile = (fileId, callback) ->
             callback new Error "No binary for this file #{fileId}"
 
 # Set binary of given file (represented by its id) to the current operation
-BankOperation::setAppDetails = (appDetails, callback) ->
-    @updateAttributes appDetails: appDetails, (err) =>
-        console.log appDetails, err
+BankOperation::setAttachments = (attachments, callback) ->
+    @updateAttributes attachments: attachments, (err) =>
+        console.log attachments, err
         return callback err if err
-        @appDetails = appDetails
+        @attachments = attachments
         callback()
 
